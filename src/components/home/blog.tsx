@@ -98,7 +98,7 @@ const Blogs = ({
               ...transitionVariantsItem,
             }}
           >
-            <h2 className="mb-3 text-3xl font-semibold text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl">
+            <h2 className="mb-3 text-3xl font-display text-pretty md:mb-4 md:text-4xl lg:mb-6 lg:max-w-3xl lg:text-5xl">
               {heading}
             </h2>
           </AnimatedGroup>
@@ -108,7 +108,7 @@ const Blogs = ({
               ...transitionVariantsItem,
             }}
           >
-            <p className="mb-8 text-muted-foreground md:text-base lg:max-w-2xl lg:text-lg">
+            <p className="mb-8 font-light tracking-wide text-muted-foreground/80 md:text-base lg:max-w-2xl lg:text-md text-center">
               {description}
             </p>
           </AnimatedGroup>

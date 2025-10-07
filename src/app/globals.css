@@ -157,18 +157,19 @@
   --primary-900: oklch(0.3924 0.0581 239.91);
   --primary-950: oklch(0.2947 0.0431 240.34);
   --primary-1000: oklch(0.231 0.033 241.68);
-  --secondary-50: oklch(0.9831 0.0066 196.52);
-  --secondary-100: oklch(0.9543 0.0181 196.87);
-  --secondary-200: oklch(0.914 0.033 197.14);
-  --secondary-300: oklch(0.8611 0.0504 198.03);
-  --secondary-400: oklch(0.811 0.0589 201.14);
-  --secondary-500: oklch(0.7107 0.0545 203.05);
-  --secondary-600: oklch(0.6054 0.0473 206.07);
-  --secondary-700: oklch(0.5164 0.0391 207.58);
-  --secondary-800: oklch(0.4448 0.0317 208.98);
-  --secondary-900: oklch(0.3931 0.0259 210.38);
-  --secondary-950: oklch(0.2923 0.0201 212.36);
-  --secondary-1000: oklch(0.227 0.0163 212.92);
+
+  --secondary-50: oklch(0.9727 0.0162 43);
+  --secondary-100: oklch(0.9441 0.0382 42.16);
+  --secondary-200: oklch(0.8926 0.076 41.45);
+  --secondary-300: oklch(0.8245 0.1307 40.37);
+  --secondary-400: oklch(0.7319 0.2017 39.84);
+  --secondary-500: oklch(0.6794 0.2405 39.49);
+  --secondary-600: oklch(0.6205 0.226 38.64);
+  --secondary-700: oklch(0.5827 0.2187 36.98);
+  --secondary-800: oklch(0.4602 0.1782 35.42);
+  --secondary-900: oklch(0.4031 0.1406 34.27);
+  --secondary-950: oklch(0.2626 0.0908 33.81);
+  --secondary-1000: oklch(0.1714 0.0581 33.09);
 }
 
 .dark {

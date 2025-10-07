@@ -107,7 +107,11 @@ const Hero1 = ({
                 }}
               >
                 {buttons.primary && (
-                  <Button asChild className="w-full sm:w-auto">
+                  <Button
+                    asChild
+                    variant={"secondary"}
+                    className="w-full sm:w-auto"
+                  >
                     <a href={buttons.primary.url}>{buttons.primary.text}</a>
                   </Button>
                 )}

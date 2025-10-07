@@ -2,7 +2,6 @@
 import Link from "next/link";
 
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import {
@@ -12,13 +11,6 @@ import {
   IconWorld,
 } from "@tabler/icons-react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
-
-const menuItems = [
-  { name: "Features", href: "#link" },
-  { name: "Solution", href: "#link" },
-  { name: "Pricing", href: "#link" },
-  { name: "About", href: "#link" },
-];
 
 const Navbar = () => {
   const [menuState, setMenuState] = React.useState(false);
@@ -83,14 +75,17 @@ const Navbar = () => {
                         href={"#"}
                         className="rounded-md hover:bg-primary-300/30 transition-all duration-150 flex items-center gap-2 p-1"
                       >
-                        <IconUsersGroup className="size-4" /> Tentang kami
+                        <IconUsersGroup className="size-4" />{" "}
+                        <span className="text-xs font-light">Tentang kami</span>
                       </Link>
                       <Link
                         href={""}
                         className="rounded-md hover:bg-primary-300/30 transition-all duration-150 flex items-center gap-2 p-1"
                       >
-                        <IconUserSquareRounded className="size-4" /> jelajahi
-                        kami
+                        <IconUserSquareRounded className="size-4" />{" "}
+                        <span className="text-xs font-light">
+                          jelajahi kami
+                        </span>
                       </Link>
                     </div>
                   </HoverCardContent>
