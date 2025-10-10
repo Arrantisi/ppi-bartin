@@ -77,7 +77,7 @@ const NavProps: NavPropsType = {
       url: "/forum",
     },
     {
-      title: "kontal",
+      title: "kontak",
       url: "/kontak",
     },
   ],
@@ -150,7 +150,7 @@ const Navbar = () => {
           className={cn(
             "mx-auto mt-1 max-w-6xl px-6 transition-all duration-500 lg:px-12",
             isScrolled &&
-              "max-w-xl rounded-2xl border backdrop-blur-md lg:px-5 ring ring-white/50 mt-3"
+              "max-w-2xl lg:max-w-5xl rounded-2xl border backdrop-blur-md lg:px-5 ring ring-white/50 mt-3"
           )}
         >
           <div className="relative flex items-center justify-between gap-6 py-2 lg:gap-0 lg:py-4">
