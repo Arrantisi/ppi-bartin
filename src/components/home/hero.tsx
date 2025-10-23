@@ -33,23 +33,23 @@ interface TypeHeroProps {
 
 //!!! isi content di variable prop ⇣
 const heroProps: TypeHeroProps = {
-  badge: "✨ Your Website Builder",
-  heading: "Blocks Built With Shadcn & Tailwind",
+  badge: "🇮🇩 Perhimpunan Pelajar Indonesia di Turki",
+  heading: "PPIT Bartın",
   description:
-    "Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
+    "Wadah kebersamaan mahasiswa Indonesia di kota Bartın, Turki. Kami hadir untuk mempererat silaturahmi, mendukung kegiatan akademik, sosial, dan budaya bagi seluruh pelajar Indonesia di Bartın.",
   buttons: {
     primary: {
-      text: "Discover all components",
-      url: "https://www.shadcnblocks.com",
+      text: "Kenali Kami Lebih Dekat",
+      url: "/tentang", // arahkan ke halaman tentang organisasi
     },
     secondary: {
-      text: "View on GitHub",
-      url: "https://www.shadcnblocks.com",
+      text: "Ikuti Kegiatan Kami",
+      url: "/kegiatan", // bisa diganti ke Instagram/agenda kegiatan
     },
   },
   image: {
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-    alt: "Hero section demo image showing interface components",
+    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/320px-Flag_of_Indonesia.svg.png",
+    alt: "Logo dan semangat kebersamaan PPIT Bartın",
   },
 };
 
@@ -78,10 +78,10 @@ const Hero1 = () => {
   const { badge, buttons, description, heading } = heroProps;
 
   return (
-    <BackgroundLines svgOptions={{ duration: 5 }}>
+    <BackgroundLines svgOptions={{ duration: 5 }} className="bg-transparent">
       <section
         className={cn(
-          "relative pt-32 pb-80 md:py-[340px] px-3 md:px-0 bg-gradient-to-tr from-primary-400 to-primary/50 duration-300",
+          "h-screen relative pt-32 pb-80 md:py-[340px] px-3 md:px-0 bg-gradient-to-tr from-primary-400 to-primary/50 duration-300",
           isScrolled && "m-1.5 md:m-6 duration-300 transition-all rounded-2xl"
         )}
       >
@@ -122,7 +122,7 @@ const Hero1 = () => {
                 as="span"
                 preset="fade"
                 speedSegment={0.3}
-                className="text-muted-foreground mb-8 max-w-xl lg:text-xl"
+                className="text-muted-foreground mb-8 max-w-xl md:max-w-5xl lg:text-xl"
               >
                 {description}
               </TextEffect>
