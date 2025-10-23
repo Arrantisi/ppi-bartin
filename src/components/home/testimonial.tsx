@@ -12,6 +12,7 @@ interface TestimonialProps {
   };
 }
 
+//!!! isi content di variable prop ⇣
 const testimonial: TestimonialProps = {
   quote:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.",

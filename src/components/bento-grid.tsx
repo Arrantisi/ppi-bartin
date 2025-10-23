@@ -6,37 +6,73 @@ import {
 } from "@tabler/icons-react";
 import { AnimatedGroup } from "./motion-primitive/animated-group";
 import { Card, CardContent, CardHeader } from "./ui/card";
+import { ReactNode } from "react";
 
 type bento1Type = {
+  title: string;
+  description: string;
+  content: ReactNode;
+}[];
+
+type bento2Type = {
   icon: Icon;
   colorBgIcon: string;
   title: string;
   description: string;
 }[];
 
-const bento1: bento1Type = [
-  {
-    icon: IconAd,
-    colorBgIcon: "bg-amber-400",
-    title: "Accounts Payable",
-    description:
-      "Streamline and automate your payments to vendors and suppliers",
-  },
-  {
-    icon: IconSaladFilled,
-    colorBgIcon: "bg-rose-400",
-    title: "Procurement",
-    description:
-      "Simplify your purchasing process with efficient and integrated solutions",
-  },
-  {
-    icon: IconBrandWhatsappFilled,
-    colorBgIcon: "bg-lime-400",
-    title: "Accounting Automation",
-    description:
-      "Automate repetitive tasks to enhance accuracy and efficiency in accounting",
-  },
-];
+type TypeBento = {
+  bento1: bento1Type;
+  bento2: bento2Type;
+};
+
+const bento: TypeBento = {
+  bento1: [
+    {
+      title: "Expense Management",
+      description:
+        "Automated expense management software built into your corporate card, reimbursements, and more",
+      content: (
+        <div className="h-56 bg-primary/10 rounded-xl flex items-center justify-center">
+          <span>content 1</span>
+        </div>
+      ),
+    },
+    {
+      title: "Management Expense",
+      description:
+        "Eight society mother fewer not duck tropical moon library pick knowledge uilt into your corporate",
+      content: (
+        <div className="h-56 bg-primary/10 rounded-xl flex items-center justify-center">
+          <span>content 1</span>
+        </div>
+      ),
+    },
+  ],
+  bento2: [
+    {
+      icon: IconAd,
+      colorBgIcon: "bg-amber-400",
+      title: "Accounts Payable",
+      description:
+        "Streamline and automate your payments to vendors and suppliers",
+    },
+    {
+      icon: IconSaladFilled,
+      colorBgIcon: "bg-rose-400",
+      title: "Procurement",
+      description:
+        "Simplify your purchasing process with efficient and integrated solutions",
+    },
+    {
+      icon: IconBrandWhatsappFilled,
+      colorBgIcon: "bg-lime-400",
+      title: "Accounting Automation",
+      description:
+        "Automate repetitive tasks to enhance accuracy and efficiency in accounting",
+    },
+  ],
+};
 
 const BentoGrid = () => {
   return (
@@ -55,15 +91,14 @@ const BentoGrid = () => {
           }}
         >
           <Card>
-            <CardHeader>
-              <div className="h-56 bg-primary/10 rounded-xl"></div>
-            </CardHeader>
+            <CardHeader>{bento.bento1[0].content}</CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <h2 className="font-display text-2xl">Expense Management</h2>
+                <h2 className="font-display text-2xl">
+                  {bento.bento1[0].title}
+                </h2>
                 <p className="font-light text-sm text-base-500/70">
-                  Automated expense management software built into your
-                  corporate card, reimbursements, and more
+                  {bento.bento1[0].description}
                 </p>
               </div>
             </CardContent>
@@ -82,15 +117,14 @@ const BentoGrid = () => {
           }}
         >
           <Card>
-            <CardHeader>
-              <div className="h-56 bg-primary/10 rounded-xl"></div>
-            </CardHeader>
+            <CardHeader>{bento.bento1[1].content}</CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <h2 className="font-display text-2xl">Expense Management</h2>
+                <h2 className="font-display text-2xl">
+                  {bento.bento1[1].title}
+                </h2>
                 <p className="font-light text-sm text-base-500/70">
-                  Automated expense management software built into your
-                  corporate card, reimbursements, and more
+                  {bento.bento1[1].description}
                 </p>
               </div>
             </CardContent>
@@ -98,7 +132,7 @@ const BentoGrid = () => {
         </AnimatedGroup>
       </div>
       <div className=" grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 w-full">
-        {bento1.map((item, idx) => (
+        {bento.bento2.map((item, idx) => (
           <Card key={idx}>
             <CardHeader>
               <span className={`p-3 ${item.colorBgIcon} rounded-full w-fit`}>

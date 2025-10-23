@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import "./globals.css";
-import { Alexandria } from "next/font/google";
+import { Poppins } from "next/font/google";
 
-const alexandria = Alexandria({
-  subsets: ["latin"],
-  weight: ["400", "600"],
+const poppins = Poppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-sans",
 });
 
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={alexandria.variable}>
+    <html lang="en" className={poppins.variable}>
       <body className="cursor-default">
         <Navbar />
         {children}

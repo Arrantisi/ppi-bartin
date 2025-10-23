@@ -22,6 +22,7 @@ interface FooterProps {
   }[];
 }
 
+//!!! isi content di variable prop ⇣
 const Footer = ({
   tagline = "Components made easy.",
   menuItems = [

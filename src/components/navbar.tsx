@@ -6,7 +6,6 @@ import {
   IconMenu2,
   IconUsersGroup,
   IconUserSquareRounded,
-  IconWorld,
 } from "@tabler/icons-react";
 import {
   NavigationMenu,
@@ -15,7 +14,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
 import { Variants } from "framer-motion";
 import {
@@ -25,11 +23,13 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { buttonVariants } from "./ui/button";
 import { Accordion, AccordionContent, AccordionTrigger } from "./ui/accordion";
 import { AnimatedGroup } from "./motion-primitive/animated-group";
 import { AccordionItem } from "@radix-ui/react-accordion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
+import { ChevronDownIcon } from "lucide-react";
 
 type MenuItem = {
   title: string;
@@ -40,7 +40,8 @@ type MenuItem = {
 
 type NavPropsType = {
   logo: {
-    Icon: Icon;
+    src: string;
+    alt: string;
     title: string;
   };
   menu?: MenuItem[];
@@ -48,8 +49,9 @@ type NavPropsType = {
 
 const NavProps: NavPropsType = {
   logo: {
-    Icon: IconWorld,
-    title: "perhimpunan perkumpulan mahasiswa turki",
+    src: "/icon-bartindo.png",
+    alt: "logo bartindo",
+    title: "Bartindo",
   },
   menu: [
     {
@@ -127,62 +129,99 @@ const itemVariants: Variants = {
 
 const Navbar = () => {
   const [menuState, setMenuState] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const lastScroll = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const handle = () => {
+      const current = window.scrollY || window.pageYOffset;
+
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          // at the very top, always show
+          if (current <= 0) {
+            setVisible(true);
+          } else if (current > lastScroll.current) {
+            // scrolling down
+            setVisible(false);
+          } else if (current < lastScroll.current) {
+            // scrolling up
+            setVisible(true);
+          }
+
+          lastScroll.current = current;
+          ticking.current = false;
+        });
+
+        ticking.current = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handle, { passive: true });
+
+    return () => window.removeEventListener("scroll", handle);
   }, []);
 
   return (
     <header>
-      <nav
+      <AnimatedGroup
+        as={"nav"}
+        variants={{
+          item: {
+            hidden: { opacity: 0, y: -30 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { type: "spring", bounce: 0.5, duration: 1.5 },
+            },
+          },
+        }}
         data-state={menuState && "active"}
         className={cn(
-          "fixed z-20 w-full px-2 top-0 duration-300",
-          menuState && "-top-20 duration-300"
+          "fixed z-20 w-full px-2 top-0 transition-transform duration-300",
+          // when not visible, translate up and hide
+          visible
+            ? "top-0 duration-300 transition-all"
+            : "-top-15 duration-500 transition-all"
         )}
       >
-        <div
-          className={cn(
-            "mx-auto mt-1 max-w-6xl px-6 transition-all duration-500 lg:px-12",
-            isScrolled &&
-              "max-w-2xl lg:max-w-5xl rounded-2xl border backdrop-blur-md lg:px-5 ring ring-white/50 mt-3"
-          )}
-        >
-          <div className="relative flex items-center justify-between gap-6 py-2 lg:gap-0 lg:py-4">
+        <div className="mx-auto mt-1 max-w-6xl px-6 transition-all duration-500 lg:px-12">
+          <div className="relative flex items-center justify-between gap-6 py-4 lg:gap-0">
+            {/* when desktop */}
             <div className="flex w-full justify-between lg:w-auto">
               <Link
                 href="/"
                 aria-label="home"
-                className="flex items-center gap-3"
+                className="flex items-center gap-1"
               >
-                <NavProps.logo.Icon className="size-5" />
-                <span className="capitalize max-w-60 md:max-w-full">
+                <Image
+                  src={NavProps.logo.src}
+                  alt={NavProps.logo.alt}
+                  width={40}
+                  height={40}
+                  className="size-9 rounded-full mr-2"
+                />
+                <span className="hidden md:block capitalize md:max-w-full text-xl font-sans">
                   {NavProps.logo?.title}
                 </span>
               </Link>
             </div>
-
-            <div className="hidden lg:block">
+            {/* props link */}
+            <div className="hidden lg:block absolute rounded-xl backdrop-blur-lg inset-0 size-fit m-auto shadow p-1">
               <NavigationMenu viewport={false}>
-                <NavigationMenuList className="bg-transparent">
+                <NavigationMenuList>
                   {NavProps.menu?.map((item) => renderMenuItems(item))}
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
 
+            <div></div>
+
+            {/* when mobiile */}
             <div className="block lg:hidden">
               <Drawer open={menuState} onOpenChange={setMenuState}>
-                <DrawerTrigger
-                  className={buttonVariants({
-                    variant: "outline",
-                    size: "icon",
-                  })}
-                >
+                <DrawerTrigger className="p-2 backdrop-blur-2xl shadow size-9 rounded-full flex items-center">
                   <IconMenu2 />
                 </DrawerTrigger>
                 <DrawerContent className="max-w-[500px] rounded-lg mx-auto">
@@ -193,9 +232,15 @@ const Navbar = () => {
                     <AnimatedGroup variants={itemVariants}>
                       <DrawerHeader>
                         <DrawerTitle className="flex items-center gap-2">
-                          <IconWorld className="size-6" />
+                          <Image
+                            src={NavProps.logo.src}
+                            alt={NavProps.logo.alt}
+                            width={40}
+                            height={40}
+                            className="size-9 rounded-full"
+                          />
                           <span className="font-display text-xl">
-                            PPI Bartin
+                            {NavProps.logo.title}
                           </span>
                         </DrawerTitle>
                       </DrawerHeader>
@@ -219,7 +264,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </AnimatedGroup>
     </header>
   );
 };
@@ -228,13 +273,15 @@ const renderMenuItems = (item: MenuItem) => {
   if (item.items) {
     return (
       <NavigationMenuItem key={item.title}>
-        <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+        <NavigationMenuTrigger className="hover:text-black/60 focus:text-black/60 data-[state=open]:hover:text-black/60">
+          {item.title}
+        </NavigationMenuTrigger>
         <NavigationMenuContent>
           {item.items.map((subItem) => (
             <NavigationMenuLink
               key={subItem.title}
               asChild
-              className={navigationMenuTriggerStyle()}
+              className="hover:bg-none"
             >
               <SubMenuLink item={subItem} />
             </NavigationMenuLink>
@@ -245,11 +292,10 @@ const renderMenuItems = (item: MenuItem) => {
   }
 
   return (
-    <NavigationMenuItem
-      key={item.title}
-      className={navigationMenuTriggerStyle()}
-    >
-      <NavigationMenuLink href={item.url}>{item.title}</NavigationMenuLink>
+    <NavigationMenuItem key={item.title}>
+      <NavigationMenuLink href={item.url} className="hover:bg-none">
+        {item.title}
+      </NavigationMenuLink>
     </NavigationMenuItem>
   );
 };
@@ -260,6 +306,7 @@ const renderMenuListMobile = (item: MenuItem) => {
       <AccordionItem value={item.title} key={item.title}>
         <AccordionTrigger className="capitalize p-2 text-[15px] leading-6 hover:no-underline hover:bg-secondary/20">
           {item.title}
+          <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
         </AccordionTrigger>
         <AccordionContent>
           {item.items.map((subItem) => (
@@ -286,7 +333,7 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   if (!Icon) return null;
 
   return (
-    <Link href={item.url} className={navigationMenuTriggerStyle()}>
+    <Link href={item.url}>
       <div className="flex items-center gap-4 min-w-60 hover:bg-primary-500/20 p-2 rounded-md">
         <Icon className="size-4 " />
         <span className="font-normal text-sm">{item.title}</span>

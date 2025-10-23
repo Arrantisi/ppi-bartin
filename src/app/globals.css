@@ -3,29 +3,9 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-  --display-family: var(--font-sans);
-  --display-weight: 600;
-  --text-family: var(--font-sans);
-  --text-weight: 400;
-}
-
-@theme inline {
-  --font-display: var(--display-family);
-  --font-text: var(--text-family);
-}
-
-@layer base {
-  .font-display {
-    font-weight: var(--display-weight);
-  }
-  .font-text {
-    font-weight: var(--text-weight);
-  }
-}
-
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -102,6 +82,7 @@
 
 :root {
   --radius: 0.5rem;
+  --background-secondary: oklch(0.869 0.0441 66.83);
   --background: oklch(96.469% 0.00513 229.648);
   --foreground: oklch(0.269 0 0);
   --card: oklch(1 0 0);

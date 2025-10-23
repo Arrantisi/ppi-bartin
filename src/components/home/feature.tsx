@@ -1,118 +1,181 @@
-import { IconArrowRight } from "@tabler/icons-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Badge } from "../ui/badge";
+"use client";
 
-type FeatureProps = {
+import {
+  Icon3dCubeSphere,
+  IconAdCircleOff,
+  IconAdjustmentsDollar,
+  IconGardenCart,
+  type Icon,
+} from "@tabler/icons-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
+import { Tabs, TabsContent } from "../ui/tabs";
+import { useState } from "react";
+import { ReactNode } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { cn } from "@/lib/utils";
+
+type TypeItem = {
+  id: string;
+  icon: Icon;
+  title: string;
+  desription: string;
+  content: ReactNode;
+};
+
+type TypeProp = {
   badge: string;
   title: string;
-  description?: string;
-  imageSrc: string;
-  imageAlt: string;
-  buttonLearn: {
-    label: string;
-    href: string;
-  };
+  items: TypeItem[];
 };
 
-const feature1: FeatureProps = {
-  badge: "Platform",
-  title: "Blocks built with Shadcn & Tailwind",
-  description:
-    "Hundreds of finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.",
-  imageSrc:
-    "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  imageAlt: "placeholder hero",
-  buttonLearn: {
-    label: "Get Started",
-    href: "https://shadcnblocks.com",
-  },
-};
-const feature2: FeatureProps = {
-  badge: "Intelligence",
-  title: "Spend Smarter, Save Every Time",
-  description:
-    "Use instant insights to get the best price on software, stop redundant spend before it happens, and make every dollar go further",
-  imageSrc:
-    "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg",
-  imageAlt: "placeholder hero",
-  buttonLearn: {
-    label: "Learn More",
-    href: "https://shadcnblocks.com",
-  },
+//!!! isi content di variable prop ⇣
+const prop: TypeProp = {
+  badge: "Features",
+  title: "Feed solutions for all development and no-code tools.",
+  items: [
+    {
+      id: "1",
+      icon: Icon3dCubeSphere,
+      title: "What makes Origin UI different?",
+      desription: "Origin UI focuses on developer experience and performance.",
+      content: (
+        <Card className="h-full">
+          <CardContent className="p-6">
+            <h2 className="text-lg font-semibold mb-2">
+              Notifications Section
+            </h2>
+            <p>Enable or disable email, push, and in-app notifications.</p>
+          </CardContent>
+        </Card>
+      ),
+    },
+    {
+      id: "2",
+      icon: IconAdCircleOff,
+      title: "What makes Origin UI different?",
+      desription: "Origin UI focuses on developer experience and performance.",
+      content: (
+        <Card className="h-full">
+          <CardHeader>
+            <CardTitle>Setting</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <h2 className="text-lg font-semibold mb-2">
+              Notifications Section
+            </h2>
+            <p>Enable or disable email, push, and in-app notifications.</p>
+          </CardContent>
+        </Card>
+      ),
+    },
+    {
+      id: "3",
+      icon: IconAdjustmentsDollar,
+      title: "What makes Origin UI different?",
+      desription: "Origin UI focuses on developer experience and performance.",
+      content: (
+        <Card className="h-full">
+          <CardContent className="p-6">
+            <h2 className="text-lg font-semibold mb-2">
+              Notifications Section
+            </h2>
+            <p>Enable or disable email, push, and in-app notifications.</p>
+          </CardContent>
+        </Card>
+      ),
+    },
+    {
+      id: "4",
+      icon: IconGardenCart,
+      title: "What makes Origin UI different?",
+      desription: "Origin UI focuses on developer experience and performance.",
+      content: (
+        <Card className="h-full">
+          <CardContent className="p-6">
+            <h2 className="text-lg font-semibold mb-2">
+              Notifications Section
+            </h2>
+            <p>Enable or disable email, push, and in-app notifications.</p>
+          </CardContent>
+        </Card>
+      ),
+    },
+  ],
 };
 
 const Feature = () => {
+  const [activeValue, setActiveValue] = useState("1");
+
   return (
-    <div className="bg-primary-400/20 w-full py-32 px-3 md:px-0">
-      <div className="w-full max-w-xl md:max-w-3xl xl:max-w-6xl mx-auto space-y-32">
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-2">
-            <Badge variant={"secondary"}>
-              <div className="size-1.5 rounded-full bg-primary-500" />{" "}
-              <span className="font-extralight text-xs ml-1">
-                {feature1.badge}
-              </span>
-            </Badge>
-            <h1 className="my-6 mt-0 text-4xl font-semibold text-balance lg:text-5xl">
-              {feature1.title}
-            </h1>
-            <p className="mb-8 max-w-xl text-muted-foreground lg:text-lg">
-              {feature1.description}
-            </p>
-            <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-              <Link
-                href={feature1.buttonLearn.href}
-                target="_blank"
-                className="p-4 rounded-xl ring ring-black flex items-center gap-2 group"
+    <div className="w-full max-w-xl md:max-w-3xl lg:max-w-6xl mx-auto my-32 px-3">
+      <div className="space-y-3 flex flex-col items-center md:items-start">
+        <Badge variant={"shadow"}>
+          <span className="size-2 rounded-full bg-red-500 mr-1" />
+          {prop.badge}
+        </Badge>
+        <div className="flex flex-col md:flex-row justify-between space-y-4">
+          <h2 className="max-w-3xl text-3xl text-center md:text-left md:text-5xl font-semibold tracking-wide">
+            {prop.title}
+          </h2>
+
+          <Button>lebih lanjut lagi</Button>
+        </div>
+      </div>
+
+      {/* tabs */}
+      <div className=" flex flex-col w-full md:flex-row mt-8 gap-10">
+        {/* bagian kanan */}
+        <div className="w-full md:w-2/5">
+          <Accordion
+            type="single"
+            collapsible
+            value={activeValue}
+            onValueChange={(val) => setActiveValue(val || activeValue)}
+          >
+            {prop.items.map((item) => (
+              <AccordionItem
+                key={item.id}
+                value={item.id}
+                className={cn(
+                  "border-none rounded-2xl transition-all duration-300 hover:shadow p-2 px-4 hover:bg-gradient-to-bl from-black/5 to-white my-2 group",
+                  activeValue === item.id &&
+                    "shadow bg-gradient-to-tl from-black/5 to-white"
+                )}
               >
-                {feature1.buttonLearn.label}{" "}
-                <IconArrowRight className="size-4 group-hover:translate-x-2 group-hover:mr-2 transition-all duration-300" />
-              </Link>
-            </div>
-          </div>
-          <Image
-            src={feature1.imageSrc}
-            alt={feature1.imageAlt}
-            height={400}
-            width={400}
-            className="max-h-96 w-full rounded-md object-cover"
-          />
+                <AccordionTrigger className="hover:no-underline text-lg font-semibold tracking-wide">
+                  <div
+                    className={cn(
+                      "flex items-center gap-5 text-black/50 group-hover:text-black",
+                      activeValue === item.id && "text-black"
+                    )}
+                  >
+                    <item.icon className="size-6" />
+                    {item.title}
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="ml-10 font-light text-sm text-accent-foreground">
+                  {item.desription}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
-        <div className="grid items-center gap-8 lg:grid-cols-2">
-          <Image
-            src={feature2.imageSrc}
-            alt={feature2.imageAlt}
-            height={400}
-            width={400}
-            className="max-h-96 w-full rounded-md object-cover"
-          />
-          <div className="flex flex-col items-center text-center lg:items-start lg:text-left space-y-2">
-            <Badge variant={"secondary"}>
-              <div className="size-1.5 rounded-full bg-primary-500" />{" "}
-              <span className="font-extralight text-xs ml-1">
-                {feature2.badge}
-              </span>
-            </Badge>
-            <h1 className="my-6 mt-0 text-4xl font-semibold text-balance lg:text-5xl">
-              {feature2.title}
-            </h1>
-            <p className="mb-8 max-w-xl text-muted-foreground lg:text-lg">
-              {feature2.description}
-            </p>
-            <div className="flex w-full flex-col justify-center gap-2 sm:flex-row lg:justify-start">
-              <Link
-                href={feature2.buttonLearn.href}
-                target="_blank"
-                className="p-4 rounded-xl border border-black flex items-center gap-2 group"
-              >
-                {feature2.buttonLearn.label}{" "}
-                <IconArrowRight className="size-4 group-hover:translate-x-2 group-hover:mr-2 transition-all duration-300" />
-              </Link>
-            </div>
-          </div>
-        </div>
+        {/* bagian kiri */}
+        <Tabs value={activeValue} className="w-full md:w-3/5">
+          {prop.items.map((item) => (
+            <TabsContent key={item.id} value={item.id}>
+              {item.content}
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </div>
   );

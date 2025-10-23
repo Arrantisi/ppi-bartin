@@ -4,16 +4,17 @@ import Feature from "@/components/home/feature";
 import Footer from "@/components/home/footer";
 import { Hero1 } from "@/components/home/hero";
 import Testimonial from "@/components/home/testimonial";
+import { ScrollContext } from "@/context/smooth-scorrel-context";
 
 export default function Home() {
   return (
-    <>
+    <ScrollContext>
       <Hero1 />
       <Blogs />
       <Feature />
       <Testimonial />
       <Ask />
       <Footer />
-    </>
+    </ScrollContext>
   );
 }

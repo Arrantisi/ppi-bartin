@@ -47,6 +47,7 @@ const transitionVariantsItem: { item: Variants } = {
 };
 
 const Blogs = ({
+  // //!!! isi content di variable prop ⇣
   tagline = "Latest Updates",
   heading = "Blog Posts",
   description = "Discover the latest trends, tips, and best practices in modern web development. From UI components to design systems, stay updated with our expert insights.",
