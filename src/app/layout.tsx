@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/navbar";
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Open_Sans, Merriweather } from "next/font/google";
+import { Toaster } from "sonner";
 
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-sans",
+const opensans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-opensans",
+});
+
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  variable: "--font-merriweather",
 });
 
 export const metadata: Metadata = {
@@ -19,8 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={poppins.variable}>
-      <body className="cursor-default">
+    <html lang="en" className={`${opensans.variable} ${merriweather.variable}`}>
+      <body className="cursor-default font-body">
+        <Toaster />
         <Navbar />
         {children}
       </body>

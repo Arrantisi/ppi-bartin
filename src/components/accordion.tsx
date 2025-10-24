@@ -15,7 +15,7 @@ type TypeItems = {
 const AccordionComponent = ({ items }: { items: TypeItems }) => {
   return (
     <div className="max-w-5xl mx-auto p-3 my-16">
-      <Accordion type="single" collapsible className="w-full" defaultValue="3">
+      <Accordion type="single" collapsible className="w-full" defaultValue="1">
         {items.map((item) => (
           <AccordionItem value={item.id} key={item.id} className="my-2">
             <AccordionTrigger className="py-2 text-[15px] leading-6 hover:no-underline">

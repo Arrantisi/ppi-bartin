@@ -1,50 +1,31 @@
 import {
-  type Icon,
   IconAd,
   IconBrandWhatsappFilled,
   IconSaladFilled,
 } from "@tabler/icons-react";
 import { AnimatedGroup } from "./motion-primitive/animated-group";
 import { Card, CardContent, CardHeader } from "./ui/card";
-import { ReactNode } from "react";
-
-type bento1Type = {
-  title: string;
-  description: string;
-  content: ReactNode;
-}[];
-
-type bento2Type = {
-  icon: Icon;
-  colorBgIcon: string;
-  title: string;
-  description: string;
-}[];
-
-type TypeBento = {
-  bento1: bento1Type;
-  bento2: bento2Type;
-};
+import { TypeBento } from "@/types";
 
 const bento: TypeBento = {
   bento1: [
     {
-      title: "Expense Management",
+      title: "Kegiatan Mahasiswa",
       description:
-        "Automated expense management software built into your corporate card, reimbursements, and more",
+        "Dokumentasi dan informasi seputar kegiatan mahasiswa Indonesia di Bartın — mulai dari acara sosial, budaya, hingga akademik.",
       content: (
         <div className="h-56 bg-primary/10 rounded-xl flex items-center justify-center">
-          <span>content 1</span>
+          <span>📸 Galeri Kegiatan</span>
         </div>
       ),
     },
     {
-      title: "Management Expense",
+      title: "Layanan & Bantuan",
       description:
-        "Eight society mother fewer not duck tropical moon library pick knowledge uilt into your corporate",
+        "PPI Bartın siap membantu mahasiswa baru maupun lama dalam adaptasi kehidupan di Bartın — mulai dari administrasi, tempat tinggal, hingga informasi kampus.",
       content: (
         <div className="h-56 bg-primary/10 rounded-xl flex items-center justify-center">
-          <span>content 1</span>
+          <span>🤝 Dukungan Mahasiswa</span>
         </div>
       ),
     },
@@ -52,24 +33,24 @@ const bento: TypeBento = {
   bento2: [
     {
       icon: IconAd,
-      colorBgIcon: "bg-amber-400",
-      title: "Accounts Payable",
+      colorBgIcon: "bg-blue-400",
+      title: "Informasi Kampus",
       description:
-        "Streamline and automate your payments to vendors and suppliers",
+        "Temukan berbagai informasi penting tentang universitas di Bartın dan cara beradaptasi dengan sistem akademik di Turki.",
     },
     {
       icon: IconSaladFilled,
-      colorBgIcon: "bg-rose-400",
-      title: "Procurement",
+      colorBgIcon: "bg-green-400",
+      title: "Kegiatan Sosial",
       description:
-        "Simplify your purchasing process with efficient and integrated solutions",
+        "Kami rutin mengadakan kegiatan sosial dan budaya untuk mempererat hubungan antar mahasiswa Indonesia di Bartın.",
     },
     {
       icon: IconBrandWhatsappFilled,
-      colorBgIcon: "bg-lime-400",
-      title: "Accounting Automation",
+      colorBgIcon: "bg-amber-400",
+      title: "Komunitas & Komunikasi",
       description:
-        "Automate repetitive tasks to enhance accuracy and efficiency in accounting",
+        "Terhubung melalui grup WhatsApp, media sosial, dan forum diskusi sesama pelajar Indonesia di Bartın.",
     },
   ],
 };

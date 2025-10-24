@@ -51,7 +51,7 @@ const NavProps: NavPropsType = {
   logo: {
     src: "/icon-bartindo.png",
     alt: "logo bartindo",
-    title: "Bartindo",
+    title: "Bartındo",
   },
   menu: [
     {
@@ -75,12 +75,8 @@ const NavProps: NavPropsType = {
       url: "/acara",
     },
     {
-      title: "forum",
-      url: "/forum",
-    },
-    {
-      title: "kontak",
-      url: "/kontak",
+      title: "contact",
+      url: "/contact",
     },
   ],
 };
@@ -202,7 +198,7 @@ const Navbar = () => {
                   height={40}
                   className="size-9 rounded-full mr-2"
                 />
-                <span className="hidden md:block capitalize md:max-w-full text-xl font-sans">
+                <span className="hidden md:block capitalize md:max-w-full text-2xl font-heading font-bold ">
                   {NavProps.logo?.title}
                 </span>
               </Link>

@@ -5,26 +5,7 @@ import Link from "next/link";
 import { AnimatedGroup } from "../motion-primitive/animated-group";
 import type { Variants } from "framer-motion";
 import BentoGrid from "../bento-grid";
-
-interface Post {
-  id: string;
-  title: string;
-  summary: string;
-  label: string;
-  author: string;
-  published: string;
-  url: string;
-  image: string;
-}
-
-interface Blog7Props {
-  tagline?: string;
-  heading?: string;
-  description?: string;
-  buttonText?: string;
-  buttonUrl?: string;
-  posts?: Post[];
-}
+import { BlogProps } from "@/types";
 
 const transitionVariantsItem: { item: Variants } = {
   item: {
@@ -48,14 +29,14 @@ const transitionVariantsItem: { item: Variants } = {
 
 const Blogs = ({
   // //!!! isi content di variable prop ⇣
-  tagline = "Latest Updates",
-  heading = "Blog Posts",
-  description = "Discover the latest trends, tips, and best practices in modern web development. From UI components to design systems, stay updated with our expert insights.",
-  buttonText = "View all articles",
+  tagline = "Cerita Kami",
+  heading = "Kegiatan & Inspirasi",
+  description = "Ikuti kisah dan kegiatan terbaru mahasiswa Indonesia di Bartın. Dari event kebersamaan hingga cerita inspiratif, semua terangkum di sini.",
+  buttonText = "Jelajahi Artikel",
   buttonUrl = "https://shadcnblocks.com",
-}: Blog7Props) => {
+}: BlogProps) => {
   return (
-    <section className="py-32 px-3 md:px-0">
+    <section className="my-32 px-3 md:px-0">
       <div className="container mx-auto flex flex-col items-center gap-16 lg:px-16">
         <div className="text-center">
           <AnimatedGroup
@@ -87,7 +68,7 @@ const Blogs = ({
               },
             }}
           >
-            <Badge variant="outline" className="mb-6">
+            <Badge variant="shadow" className="mb-6">
               <span className="size-1.5 rounded-full bg-primary mr-1" />
               {tagline}
             </Badge>

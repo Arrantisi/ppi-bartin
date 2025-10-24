@@ -10,31 +10,14 @@ import type { Variants } from "framer-motion";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { BackgroundLines } from "../ui/background-lines";
-
-interface TypeHeroProps {
-  badge: string;
-  heading: string;
-  description: string;
-  buttons: {
-    primary: {
-      text: string;
-      url: string;
-    };
-    secondary: {
-      text: string;
-      url: string;
-    };
-  };
-  image: {
-    src: string;
-    alt: string;
-  };
-}
+import { Avatar, AvatarImage } from "../ui/avatar";
+import { AvatarFallback } from "@radix-ui/react-avatar";
+import { TypeHeroProps } from "@/types";
 
 //!!! isi content di variable prop ⇣
 const heroProps: TypeHeroProps = {
   badge: "🇮🇩 Perhimpunan Pelajar Indonesia di Turki",
-  heading: "PPIT Bartın",
+  heading: "PPI Bartın",
   description:
     "Wadah kebersamaan mahasiswa Indonesia di kota Bartın, Turki. Kami hadir untuk mempererat silaturahmi, mendukung kegiatan akademik, sosial, dan budaya bagi seluruh pelajar Indonesia di Bartın.",
   buttons: {
@@ -48,7 +31,7 @@ const heroProps: TypeHeroProps = {
     },
   },
   image: {
-    src: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Flag_of_Indonesia.svg/320px-Flag_of_Indonesia.svg.png",
+    src: "/icon-bartindo.png",
     alt: "Logo dan semangat kebersamaan PPIT Bartın",
   },
 };
@@ -78,16 +61,16 @@ const Hero1 = () => {
   const { badge, buttons, description, heading } = heroProps;
 
   return (
-    <BackgroundLines svgOptions={{ duration: 5 }} className="bg-transparent">
-      <section
-        className={cn(
-          "h-screen relative pt-32 pb-80 md:py-[340px] px-3 md:px-0 bg-gradient-to-tr from-primary-400 to-primary/50 duration-300",
-          isScrolled && "m-1.5 md:m-6 duration-300 transition-all rounded-2xl"
-        )}
-      >
+    <section
+      className={cn(
+        "h-screen relative pt-32 md:py-[340px] px-3 md:px-0 bg-gradient-to-tr from-primary-400 to-primary/50 duration-300",
+        isScrolled && "m-1.5 md:m-6 duration-300 transition-all rounded-2xl"
+      )}
+    >
+      <BackgroundLines svgOptions={{ duration: 5 }} className="bg-transparent">
         <div className="w-full max-w-xl md:max-w-3xl xl:max-w-6xl mx-auto ">
           <div className="grid items-center gap-8">
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-center text-center h-full">
               <AnimatedGroup
                 variants={{
                   item: {
@@ -104,20 +87,45 @@ const Hero1 = () => {
                   },
                 }}
               >
-                <Badge variant="outline">
+                <Badge variant="shadow">
                   {badge}
                   <ArrowUpRight className="ml-2 size-4" />
                 </Badge>
               </AnimatedGroup>
-
-              <TextEffect
-                as="h1"
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                className="my-6 text-pretty text-4xl font-bold lg:text-6xl"
-              >
-                {heading}
-              </TextEffect>
+              <div className="flex items-center my-6 gap-5">
+                <AnimatedGroup
+                  variants={{
+                    item: {
+                      hidden: { opacity: 0, y: -20 },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          type: "spring",
+                          bounce: 0.5,
+                          duration: 1.5,
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <Avatar className="size-16">
+                    <AvatarImage
+                      src={heroProps.image.src}
+                      alt={heroProps.image.alt}
+                    />
+                    <AvatarFallback>B</AvatarFallback>
+                  </Avatar>
+                </AnimatedGroup>
+                <TextEffect
+                  as="h1"
+                  preset="fade-in-blur"
+                  speedSegment={0.3}
+                  className="text-pretty text-4xl font-bold lg:text-6xl"
+                >
+                  {heading}
+                </TextEffect>
+              </div>
               <TextEffect
                 as="span"
                 preset="fade"
@@ -170,8 +178,8 @@ const Hero1 = () => {
             </div>
           </div>
         </div>
-      </section>
-    </BackgroundLines>
+      </BackgroundLines>
+    </section>
   );
 };
 

@@ -5,7 +5,6 @@ import {
   IconAdCircleOff,
   IconAdjustmentsDollar,
   IconGardenCart,
-  type Icon,
 } from "@tabler/icons-react";
 import {
   Accordion,
@@ -17,41 +16,30 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Tabs, TabsContent } from "../ui/tabs";
 import { useState } from "react";
-import { ReactNode } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { cn } from "@/lib/utils";
-
-type TypeItem = {
-  id: string;
-  icon: Icon;
-  title: string;
-  desription: string;
-  content: ReactNode;
-};
-
-type TypeProp = {
-  badge: string;
-  title: string;
-  items: TypeItem[];
-};
+import { FeatureProp } from "@/types";
 
 //!!! isi content di variable prop ⇣
-const prop: TypeProp = {
-  badge: "Features",
-  title: "Feed solutions for all development and no-code tools.",
+const prop: FeatureProp = {
+  badge: "Program Kami",
+  title:
+    "Kegiatan, dukungan, dan inisiatif untuk mahasiswa Indonesia di Bartın.",
   items: [
     {
       id: "1",
       icon: Icon3dCubeSphere,
-      title: "What makes Origin UI different?",
-      desription: "Origin UI focuses on developer experience and performance.",
+      title: "Orientasi Mahasiswa Baru",
+      desription:
+        "Panduan dan bantuan bagi mahasiswa baru untuk beradaptasi di Bartın.",
       content: (
         <Card className="h-full">
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-2">
-              Notifications Section
-            </h2>
-            <p>Enable or disable email, push, and in-app notifications.</p>
+            <h2 className="text-lg font-heading mb-2">Program Orientasi</h2>
+            <p>
+              Kami menyediakan sesi orientasi tahunan agar mahasiswa baru lebih
+              siap menghadapi kehidupan kampus dan budaya Turki.
+            </p>
           </CardContent>
         </Card>
       ),
@@ -59,18 +47,16 @@ const prop: TypeProp = {
     {
       id: "2",
       icon: IconAdCircleOff,
-      title: "What makes Origin UI different?",
-      desription: "Origin UI focuses on developer experience and performance.",
+      title: "Kegiatan Sosial",
+      desription: "Ajang mempererat hubungan antar pelajar Indonesia.",
       content: (
         <Card className="h-full">
-          <CardHeader>
-            <CardTitle>Setting</CardTitle>
-          </CardHeader>
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-2">
-              Notifications Section
-            </h2>
-            <p>Enable or disable email, push, and in-app notifications.</p>
+            <h2 className="text-lg font-heading mb-2">Event & Volunteer</h2>
+            <p>
+              Ikuti kegiatan sosial, bakti masyarakat, dan acara budaya untuk
+              memperkuat rasa kebersamaan.
+            </p>
           </CardContent>
         </Card>
       ),
@@ -78,15 +64,17 @@ const prop: TypeProp = {
     {
       id: "3",
       icon: IconAdjustmentsDollar,
-      title: "What makes Origin UI different?",
-      desription: "Origin UI focuses on developer experience and performance.",
+      title: "Bantuan Mahasiswa",
+      desription:
+        "Kami membantu mahasiswa dalam hal administrasi, akomodasi, dan adaptasi awal.",
       content: (
         <Card className="h-full">
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-2">
-              Notifications Section
-            </h2>
-            <p>Enable or disable email, push, and in-app notifications.</p>
+            <h2 className="text-lg font-heading mb-2">Support Center</h2>
+            <p>
+              Hubungi tim PPI Bartın jika kamu butuh bantuan terkait dokumen,
+              tempat tinggal, atau informasi penting lainnya.
+            </p>
           </CardContent>
         </Card>
       ),
@@ -94,15 +82,16 @@ const prop: TypeProp = {
     {
       id: "4",
       icon: IconGardenCart,
-      title: "What makes Origin UI different?",
-      desription: "Origin UI focuses on developer experience and performance.",
+      title: "Kegiatan Akademik",
+      desription: "Diskusi, pelatihan, dan berbagi ilmu antar mahasiswa.",
       content: (
         <Card className="h-full">
           <CardContent className="p-6">
-            <h2 className="text-lg font-semibold mb-2">
-              Notifications Section
-            </h2>
-            <p>Enable or disable email, push, and in-app notifications.</p>
+            <h2 className="text-lg font-heading mb-2">Forum Akademik</h2>
+            <p>
+              Kami mendukung pengembangan akademik melalui sesi belajar bersama
+              dan workshop tematik.
+            </p>
           </CardContent>
         </Card>
       ),

@@ -1,95 +1,73 @@
-interface MenuItem {
-  title: string;
-  links: {
-    text: string;
-    url: string;
-  }[];
-}
-
-interface FooterProps {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-    title: string;
-  };
-  tagline?: string;
-  menuItems?: MenuItem[];
-  copyright?: string;
-  bottomLinks?: {
-    text: string;
-    url: string;
-  }[];
-}
+import { FooterProps } from "@/types";
+import Image from "next/image";
 
 //!!! isi content di variable prop ⇣
 const Footer = ({
-  tagline = "Components made easy.",
+  tagline = "Menyatukan Mahasiswa Indonesia di Bartın.",
+  supportTagline = "Belajar, Berkarya, dan Berkolaborasi bersama PPI Bartın.",
   menuItems = [
     {
-      title: "Product",
+      title: "Tentang Kami",
       links: [
-        { text: "Overview", url: "#" },
-        { text: "Pricing", url: "#" },
-        { text: "Marketplace", url: "#" },
-        { text: "Features", url: "#" },
-        { text: "Integrations", url: "#" },
-        { text: "Pricing", url: "#" },
+        { text: "Profil PPI Bartın", url: "#" },
+        { text: "Struktur Organisasi", url: "#" },
+        { text: "Program & Kegiatan", url: "#" },
+        { text: "Kontak", url: "/contact" },
       ],
     },
     {
-      title: "Company",
+      title: "Ikuti Kami",
       links: [
-        { text: "About", url: "#" },
-        { text: "Team", url: "#" },
-        { text: "Blog", url: "#" },
-        { text: "Careers", url: "#" },
-        { text: "Contact", url: "#" },
-        { text: "Privacy", url: "#" },
+        { text: "Instagram", url: "https://www.instagram.com/ppibartin/" },
+        { text: "Facebook", url: "https://www.facebook.com/ppibartin" },
+        { text: "YouTube", url: "https://www.youtube.com/@ppibartin" },
       ],
     },
-    {
-      title: "Resources",
-      links: [
-        { text: "Help", url: "#" },
-        { text: "Sales", url: "#" },
-        { text: "Advertise", url: "#" },
-      ],
-    },
-    {
-      title: "Social",
-      links: [
-        { text: "Twitter", url: "#" },
-        { text: "Instagram", url: "#" },
-        { text: "LinkedIn", url: "#" },
-      ],
-    },
-  ],
-  copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+  ] as unknown as FooterProps["menuItems"],
+  copyright = "© 2025 Perhimpunan Pelajar Indonesia Bartın. All rights reserved.",
   bottomLinks = [
-    { text: "Terms and Conditions", url: "#" },
-    { text: "Privacy Policy", url: "#" },
+    { text: "Kebijakan Privasi", url: "#" },
+    { text: "Syarat & Ketentuan", url: "#" },
   ],
 }: FooterProps) => {
   return (
-    <section className="py-32 bg-primary-200">
-      <div className="mx-auto max-w-xl md:max-w-3xl xl:max-w-6xl">
+    <section className="py-16 bg-primary-700">
+      <div className="mx-auto max-w-xl md:max-w-3xl xl:max-w-6xl px-4 md:px-0">
         <footer>
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
-            <div className="col-span-2 mb-8 lg:mb-0">
-              <div className="flex items-center gap-2 lg:justify-start">
-                logo
+          <div className="grid grid-cols-2 md:grid-cols-5">
+            <div className="col-span-3 mb-14 md:mb-8 lg:mb-0 space-y-1">
+              <h1 className="mt-4 font-bold tracking-wide text-background text-xl md:text-2xl">
+                {tagline}
+              </h1>
+              <h2 className="text-background/80 tracking-wide text-lg md:text-xl">
+                {supportTagline}
+              </h2>
+
+              <div className="mt-14 flex items-center gap-2">
+                <div className="bg-background rounded-full p-2 w-fit flex items-center gap-2">
+                  <Image
+                    src={"/icon-bartindo.png"}
+                    alt="icon-bartindo"
+                    height={100}
+                    width={100}
+                    className="size-12 md:size-14 rounded-full"
+                  />
+                </div>
+                <h1 className="font-bold text-4xl md:text-5xl text-background">
+                  Bartındo
+                </h1>
               </div>
-              <p className="mt-4 font-bold">{tagline}</p>
             </div>
-            {menuItems.map((section, sectionIdx) => (
+            {menuItems?.map((section, sectionIdx) => (
               <div key={sectionIdx}>
-                <h3 className="mb-4 font-bold">{section.title}</h3>
-                <ul className="text-muted-foreground space-y-4">
+                <h3 className="mb-4 font-bold text-lg text-background ">
+                  {section.title}
+                </h3>
+                <ul className="text-background space-y-4">
                   {section.links.map((link, linkIdx) => (
                     <li
                       key={linkIdx}
-                      className="hover:text-primary font-medium"
+                      className="hover:text-background/70 font-thin text-background/80"
                     >
                       <a href={link.url}>{link.text}</a>
                     </li>
@@ -98,7 +76,7 @@ const Footer = ({
               </div>
             ))}
           </div>
-          <div className="text-muted-foreground mt-24 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
+          <div className="text-background mt-24 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
             <p>{copyright}</p>
             <ul className="flex gap-4">
               {bottomLinks.map((link, linkIdx) => (
