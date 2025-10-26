@@ -54,7 +54,10 @@ export type FeatureProp = {
     icon: Icon;
     title: string;
     desription: string;
-    content: ReactNode;
+    content: {
+      header: string;
+      description: string;
+    };
   }[];
 };
 
@@ -88,7 +91,7 @@ export type AskType = {
 };
 
 //?? ======================================== footer type ======================================== ??//
-export type FooterProps = {
+export type footerPropsType = {
   logo?: {
     url: string;
     src: string;
@@ -116,22 +119,42 @@ export type contactPropsType = {
   tagline: string;
   header: string;
   description: string;
-  socialMedia: {
-    link: string;
-    icon: Icon;
-  }[];
 };
 
 //?? ======================================== address type ======================================== ??//
 export type addressPropsType = {
   tagline: string;
   header: string;
-  image: {
-    url: string;
-    alt: string;
-  };
+  description: string;
   content: {
     title: string;
     desription: string;
   }[];
+  socialMedia: {
+    link: string;
+    icon: Icon;
+  }[];
+};
+
+//?? ======================================== timeline type ======================================== ??//
+export type timelinePropsType = {
+  tagline: string;
+  header: string;
+  description: string;
+  timelines: {
+    id: string;
+    title: string;
+    description: string;
+    content: {
+      src: string;
+      alt: string;
+    }[];
+  }[];
+};
+
+//?? ======================================== acara kami type ======================================== ??//
+export type acarakamiPropsType = {
+  tagline: string;
+  header: string;
+  description: string;
 };

@@ -3,6 +3,7 @@ import Navbar from "@/components/navbar";
 import "./globals.css";
 import { Open_Sans, Merriweather } from "next/font/google";
 import { Toaster } from "sonner";
+import Footer from "@/components/home/footer";
 
 const opensans = Open_Sans({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Toaster />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

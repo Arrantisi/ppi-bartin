@@ -1,35 +1,11 @@
-import { FooterProps } from "@/types";
+import { footerProps } from "@/lib/data/footer";
 import Image from "next/image";
 
 //!!! isi content di variable prop ⇣
-const Footer = ({
-  tagline = "Menyatukan Mahasiswa Indonesia di Bartın.",
-  supportTagline = "Belajar, Berkarya, dan Berkolaborasi bersama PPI Bartın.",
-  menuItems = [
-    {
-      title: "Tentang Kami",
-      links: [
-        { text: "Profil PPI Bartın", url: "#" },
-        { text: "Struktur Organisasi", url: "#" },
-        { text: "Program & Kegiatan", url: "#" },
-        { text: "Kontak", url: "/contact" },
-      ],
-    },
-    {
-      title: "Ikuti Kami",
-      links: [
-        { text: "Instagram", url: "https://www.instagram.com/ppibartin/" },
-        { text: "Facebook", url: "https://www.facebook.com/ppibartin" },
-        { text: "YouTube", url: "https://www.youtube.com/@ppibartin" },
-      ],
-    },
-  ] as unknown as FooterProps["menuItems"],
-  copyright = "© 2025 Perhimpunan Pelajar Indonesia Bartın. All rights reserved.",
-  bottomLinks = [
-    { text: "Kebijakan Privasi", url: "#" },
-    { text: "Syarat & Ketentuan", url: "#" },
-  ],
-}: FooterProps) => {
+const Footer = () => {
+  const { bottomLinks, copyright, menuItems, supportTagline, tagline } =
+    footerProps;
+
   return (
     <section className="py-16 bg-primary-700">
       <div className="mx-auto max-w-xl md:max-w-3xl xl:max-w-6xl px-4 md:px-0">
@@ -79,7 +55,7 @@ const Footer = ({
           <div className="text-background mt-24 flex flex-col justify-between gap-4 border-t pt-8 text-sm font-medium md:flex-row md:items-center">
             <p>{copyright}</p>
             <ul className="flex gap-4">
-              {bottomLinks.map((link, linkIdx) => (
+              {bottomLinks?.map((link, linkIdx) => (
                 <li key={linkIdx} className="hover:text-primary underline">
                   <a href={link.url}>{link.text}</a>
                 </li>

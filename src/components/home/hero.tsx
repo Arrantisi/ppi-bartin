@@ -12,29 +12,7 @@ import { cn } from "@/lib/utils";
 import { BackgroundLines } from "../ui/background-lines";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
-import { TypeHeroProps } from "@/types";
-
-//!!! isi content di variable prop ⇣
-const heroProps: TypeHeroProps = {
-  badge: "🇮🇩 Perhimpunan Pelajar Indonesia di Turki",
-  heading: "PPI Bartın",
-  description:
-    "Wadah kebersamaan mahasiswa Indonesia di kota Bartın, Turki. Kami hadir untuk mempererat silaturahmi, mendukung kegiatan akademik, sosial, dan budaya bagi seluruh pelajar Indonesia di Bartın.",
-  buttons: {
-    primary: {
-      text: "Kenali Kami Lebih Dekat",
-      url: "/tentang", // arahkan ke halaman tentang organisasi
-    },
-    secondary: {
-      text: "Ikuti Kegiatan Kami",
-      url: "/kegiatan", // bisa diganti ke Instagram/agenda kegiatan
-    },
-  },
-  image: {
-    src: "/icon-bartindo.png",
-    alt: "Logo dan semangat kebersamaan PPIT Bartın",
-  },
-};
+import { heroProps } from "@/lib/data/hero-data";
 
 const transitionVariants: { item: Variants } = {
   item: {

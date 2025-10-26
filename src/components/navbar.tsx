@@ -3,6 +3,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import {
   type Icon,
+  IconCalendarCheck,
+  IconDeviceVisionPro,
   IconMenu2,
   IconUsersGroup,
   IconUserSquareRounded,
@@ -73,6 +75,18 @@ const NavProps: NavPropsType = {
     {
       title: "acara",
       url: "/acara",
+      items: [
+        {
+          url: "/timeline",
+          title: "Timeline Acara",
+          Icon: IconDeviceVisionPro,
+        },
+        {
+          url: "/acara-kami",
+          title: "Acara kami",
+          Icon: IconCalendarCheck,
+        },
+      ],
     },
     {
       title: "contact",
@@ -182,7 +196,7 @@ const Navbar = () => {
             : "-top-15 duration-500 transition-all"
         )}
       >
-        <div className="mx-auto mt-1 max-w-6xl px-6 transition-all duration-500 lg:px-12">
+        <div className="mx-auto mt-1 max-w-6xl px-6 transition-all duration-500 lg:px-12 text-shadow-2xs">
           <div className="relative flex items-center justify-between gap-6 py-4 lg:gap-0">
             {/* when desktop */}
             <div className="flex w-full justify-between lg:w-auto">
@@ -191,14 +205,16 @@ const Navbar = () => {
                 aria-label="home"
                 className="flex items-center gap-1"
               >
-                <Image
-                  src={NavProps.logo.src}
-                  alt={NavProps.logo.alt}
-                  width={40}
-                  height={40}
-                  className="size-9 rounded-full mr-2"
-                />
-                <span className="hidden md:block capitalize md:max-w-full text-2xl font-heading font-bold ">
+                <div className="rounded-full size-11 bg-background flex items-center justify-center">
+                  <Image
+                    src={NavProps.logo.src}
+                    alt={NavProps.logo.alt}
+                    width={40}
+                    height={40}
+                    className="size-9 rounded-full"
+                  />
+                </div>
+                <span className="hidden md:block capitalize md:max-w-full text-2xl font-heading font-bold ml-1">
                   {NavProps.logo?.title}
                 </span>
               </Link>

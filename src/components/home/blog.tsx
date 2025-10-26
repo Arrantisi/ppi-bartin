@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AnimatedGroup } from "../motion-primitive/animated-group";
 import type { Variants } from "framer-motion";
 import BentoGrid from "../bento-grid";
-import { BlogProps } from "@/types";
+import { blogProps } from "@/lib/data/blog-data";
 
 const transitionVariantsItem: { item: Variants } = {
   item: {
@@ -27,14 +27,9 @@ const transitionVariantsItem: { item: Variants } = {
   },
 };
 
-const Blogs = ({
-  // //!!! isi content di variable prop ⇣
-  tagline = "Cerita Kami",
-  heading = "Kegiatan & Inspirasi",
-  description = "Ikuti kisah dan kegiatan terbaru mahasiswa Indonesia di Bartın. Dari event kebersamaan hingga cerita inspiratif, semua terangkum di sini.",
-  buttonText = "Jelajahi Artikel",
-  buttonUrl = "https://shadcnblocks.com",
-}: BlogProps) => {
+const Blogs = () => {
+  const { buttonText, buttonUrl, description, heading, tagline } = blogProps;
+
   return (
     <section className="my-32 px-3 md:px-0">
       <div className="container mx-auto flex flex-col items-center gap-16 lg:px-16">
@@ -97,7 +92,7 @@ const Blogs = ({
 
           <div className="w-full flex justify-center">
             <Link
-              href={buttonUrl}
+              href={buttonUrl || "not-found"}
               target="_blank"
               className="group flex items-center gap-2 text-sm py-0.5 px-2 hover:text-primary-800 transition-colors duration-200"
             >
